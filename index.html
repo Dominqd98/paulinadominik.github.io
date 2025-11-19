@@ -1,11 +1,71 @@
 <!doctype html>
-<html>
+<html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <title>Moja pierwsza strona</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Moja strona — odliczanie i galeria</title>
+  <style>
+    body{font-family:Arial,sans-serif;margin:0;padding:20px;background:#f6f8fb;display:flex;justify-content:center}
+    .container{max-width:900px;width:100%;background:white;padding:20px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+    h1{text-align:center}
+    .countdown{display:flex;justify-content:center;gap:15px;margin:20px 0}
+    .box{background:#2b8cff;color:white;padding:15px;border-radius:8px;min-width:70px;text-align:center}
+    .label{font-size:0.9rem;opacity:0.8}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:20px}
+    .gallery-item{background:#e0e0e0;height:100px;display:flex;align-items:center;justify-content:center;color:#666;border-radius:8px;font-size:0.9rem}
+    footer{text-align:center;margin-top:20px;color:#666;font-size:0.85rem}
+  </style>
 </head>
 <body>
-  <h1>Witaj na mojej stronie!</h1>
-  <p>Strona działa na GitHub Pages 🎉</p>
+  <div class="container">
+    <h1>Moja strona z odliczaniem</h1>
+
+    <div class="countdown">
+      <div class="box">
+        <div id="days">0</div>
+        <div class="label">dni</div>
+      </div>
+      <div class="box">
+        <div id="hours">00</div>
+        <div class="label">godz.</div>
+      </div>
+      <div class="box">
+        <div id="minutes">00</div>
+        <div class="label">min</div>
+      </div>
+      <div class="box">
+        <div id="seconds">00</div>
+        <div class="label">sek</div>
+      </div>
+    </div>
+
+    <h2>Galeria</h2>
+    <div class="gallery">
+      <div class="gallery-item">Brak zdjęć</div>
+    </div>
+
+    <footer>Strona działa na GitHub Pages</footer>
+  </div>
+
+  <script>
+    const TARGET_DATE = '2027-07-24T13:00:00';
+
+    function updateCountdown(){
+      const now = new Date();
+      const target = new Date(TARGET_DATE);
+      const diff = Math.max(0,target-now);
+      const sec = Math.floor(diff/1000)%60;
+      const min = Math.floor(diff/1000/60)%60;
+      const hr = Math.floor(diff/1000/3600)%24;
+      const days = Math.floor(diff/1000/3600/24);
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = String(hr).padStart(2,'0');
+      document.getElementById('minutes').textContent = String(min).padStart(2,'0');
+      document.getElementById('seconds').textContent = String(sec).padStart(2,'0');
+      if(diff<=0) clearInterval(interval);
+    }
+    const interval = setInterval(updateCountdown,1000);
+    updateCountdown();
+  </script>
 </body>
 </html>
