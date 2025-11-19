@@ -6,33 +6,34 @@
   <title>Wesele Paulina & Dominik — 24.07.2027</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-sA+e2H0Qm3b2k6wM1eGk0hZbJkY3b1jv0v+3r3r0k+0=" crossorigin=""/>
   <style>
-    :root{--bg:#f8f6f2;--accent:#c9a34e;--accent-dark:#a98632}
+    :root{--bg:#ffffff;--accent:#bfc2c7;--accent2:#d9d9d9;--chrome:#c0c0c0}
     body{
       font-family:'Playfair Display', serif;
       margin:0;
-      background:var(--bg) url('https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?auto=format&fit=crop&w=1600&q=60') center/cover fixed;
+      background:var(--bg);
       color:#111;
     }
-    header{background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);padding:38px;text-align:center;color:white;border-bottom:1px solid rgba(255,255,255,0.2)}
-    h1{margin:0;font-size:clamp(36px,5vw,62px);font-family:'Playfair Display',serif;color:var(--accent)}
-    .subtitle{color:#f4f4f4;margin-top:10px;font-size:22px;font-family:'Playfair Display',serif}
+    header{background:linear-gradient(180deg,#ffffff, #f3f3f3);padding:40px;text-align:center;border-bottom:2px solid var(--accent)}
+    h1{margin:0;font-size:clamp(36px,5vw,62px);font-family:'Playfair Display',serif;color:#555;letter-spacing:1px}
+    .subtitle{color:#666;margin-top:10px;font-size:20px}
 
     .countdown{display:flex;gap:14px;justify-content:center;margin:26px 12px 40px}
-    .tile{background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);padding:20px 18px;border-radius:16px;min-width:90px;box-shadow:0 6px 18px rgba(0,0,0,0.35);text-align:center;color:white;border:1px solid rgba(255,255,255,0.15)}
-    .tile .num{font-size:28px;font-weight:700;color:var(--accent)}
-    .tile .lbl{font-size:14px;color:#ddd;margin-top:6px}
+    .tile{background:linear-gradient(145deg,#ffffff,#e2e2e2);border:1px solid var(--accent);padding:20px 18px;border-radius:16px;min-width:90px;box-shadow:0 6px 18px rgba(0,0,0,0.07);text-align:center;color:#333}
+    .tile .num{font-size:28px;font-weight:700;color:#555}
+    .tile .lbl{font-size:14px;color:#777;margin-top:6px}
 
     main{max-width:1100px;margin:0 auto;padding:24px}
     .maps{display:grid;grid-template-columns:1fr;gap:26px}
     @media(min-width:800px){.maps{grid-template-columns:1fr 1fr}}
 
-    .card{background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);padding:20px;border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,0.4);color:white;border:1px solid rgba(255,255,255,0.15)}
-    #map1,#map2{height:330px;border-radius:14px;border:1px solid rgba(255,255,255,0.2);margin-top:12px}
-    .loc-title{font-weight:700;margin-bottom:6px;font-size:24px;color:var(--accent)}
-    .venue-link{display:inline-block;margin-top:12px;padding:12px 18px;background:var(--accent);color:black;font-weight:600;border-radius:10px;text-decoration:none;font-size:18px;border:1px solid var(--accent-dark)}
+    .card{background:linear-gradient(145deg,#ffffff,#ededed);padding:20px;border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,0.08);color:#333;border:1px solid var(--accent)}
+    iframe.map{width:100%;height:330px;border:0;border-radius:14px;margin-top:12px;box-shadow:0 5px 15px rgba(0,0,0,0.1)}
 
-    footer{font-size:16px;color:#f3f3f3;text-align:center;padding:32px;background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);margin-top:30px;font-family:'Playfair Display',serif;border-top:1px solid rgba(255,255,255,0.2)}
-  </style>
+    .loc-title{font-weight:700;margin-bottom:6px;font-size:24px;color:#555}
+    .venue-link{display:inline-block;margin-top:12px;padding:12px 18px;background:#e5e5e5;color:#333;font-weight:600;border-radius:10px;text-decoration:none;font-size:18px;border:1px solid var(--accent)}
+
+    footer{font-size:16px;color:#555;text-align:center;padding:32px;background:#fafafa;border-top:2px solid var(--accent);margin-top:30px;font-family:'Playfair Display',serif}
+</style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
@@ -61,14 +62,14 @@
       <div class="card">
         <div class="loc-title">Ceremonia ślubu — Parafia Podwyższenia Krzyża Świętego</div>
         <div>ul. Kamiennogórska 11, 32-540 Wolbrom</div>
-        <div id="map1" aria-label="Mapa - kościół"></div>
+        <iframe class="map" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Parafia+Podwyższenia+Krzyża+Świętego+Wolbrom"></iframe>
         <p style="margin-top:8px">Godzina: <strong>24.07.2027, 13:00</strong></p>
       </div>
 
       <div class="card">
         <div class="loc-title">Po ceremonii zapraszamy na salę weselną — Impresja Na Głowice</div>
         <div>ul. Jana Pawła II 27D, 28-362 Nagłowice</div>
-        <div id="map2" aria-label="Mapa - sala weselna"></div>
+        <iframe class="map" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Impresja+Na+Głowice+Nagłowice"></iframe>
         <a class="venue-link" href="https://impresjanaglowice.pl/" target="_blank" rel="noopener">Strona sali — Impresja Na Głowice</a>
       </div>
     </section>
@@ -90,42 +91,5 @@
     Strona przygotowana dla Pauliny i Dominika — sprawdź dojazd i potwierdź obecność. ❤️
   </footer>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-o9N1j7kY7bGLv+vT2v1k6bQ6k1s9GZf3VZqgkD0f0Ro=" crossorigin=""></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-<script>
-  // COUNTDOWN
-  const target = new Date(Date.UTC(2027,6,24,13,0,0));
-  function updateCountdown(){
-    const now = new Date();
-    const diff = target - now;
-    if(diff<=0){clearInterval(timer);}    
-    const sec = Math.floor(diff/1000)%60;
-    const min = Math.floor(diff/1000/60)%60;
-    const hrs = Math.floor(diff/1000/60/60)%24;
-    const days = Math.floor(diff/1000/60/60/24);
-    document.getElementById('days').textContent = days;
-    document.getElementById('hours').textContent = String(hrs).padStart(2,'0');
-    document.getElementById('minutes').textContent = String(min).padStart(2,'0');
-    document.getElementById('seconds').textContent = String(sec).padStart(2,'0');
-  }
-  updateCountdown();
-  const timer = setInterval(updateCountdown,1000);
-
-  // MAP FIX — ENSURE MAP LOADS AFTER PAGE RENDER
-  window.onload = function(){
-    const churchCoords = [50.374880, 19.762330];
-    const venueCoords = [50.671712, 20.092148];
-
-    const map1 = L.map('map1').setView(churchCoords, 15);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(map1);
-    L.marker(churchCoords).addTo(map1);
-    setTimeout(()=>{map1.invalidateSize()},300);
-
-    const map2 = L.map('map2').setView(venueCoords, 15);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(map2);
-    L.marker(venueCoords).addTo(map2);
-    setTimeout(()=>{map2.invalidateSize()},300);
-  }
-</script>
-</body>
+  </body>
 </html>
