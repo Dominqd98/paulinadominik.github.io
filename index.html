@@ -6,35 +6,39 @@
   <title>Wesele Paulina & Dominik — 24.07.2027</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-sA+e2H0Qm3b2k6wM1eGk0hZbJkY3b1jv0v+3r3r0k+0=" crossorigin=""/>
   <style>
-    :root{--bg:#faf9f7;--accent:#8b0000}
+    :root{--bg:#f8f6f2;--accent:#c9a34e;--accent-dark:#a98632}
     body{
-      font-family:'Great Vibes', 'Cormorant Garamond', serif;
+      font-family:'Playfair Display', serif;
       margin:0;
-      background:var(--bg) url('https://images.unsplash.com/photo-1529651737248-dad5e287768e?auto=format&fit=crop&w=1400&q=60') center/cover fixed;
+      background:var(--bg) url('https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?auto=format&fit=crop&w=1600&q=60') center/cover fixed;
       color:#111;
     }
-    header{background:rgba(255,255,255,0.75);backdrop-filter:blur(6px);padding:32px;text-align:center;border-bottom:1px solid rgba(0,0,0,0.08)}
-    h1{margin:0;font-size:clamp(32px,5vw,60px);font-family:'Great Vibes',cursive;color:var(--accent)}
-    .subtitle{color:#333;margin-top:10px;font-family:'Cormorant Garamond',serif;font-size:20px}
+    header{background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);padding:38px;text-align:center;color:white;border-bottom:1px solid rgba(255,255,255,0.2)}
+    h1{margin:0;font-size:clamp(36px,5vw,62px);font-family:'Playfair Display',serif;color:var(--accent)}
+    .subtitle{color:#f4f4f4;margin-top:10px;font-size:22px;font-family:'Playfair Display',serif}
 
-    .countdown{display:flex;gap:10px;justify-content:center;margin:26px 12px 40px}
-    .tile{background:rgba(255,255,255,0.8);backdrop-filter:blur(6px);padding:18px;border-radius:14px;min-width:84px;box-shadow:0 6px 18px rgba(0,0,0,0.06);text-align:center;font-family:'Cormorant Garamond',serif}
-    .tile .num{font-size:26px;font-weight:700}
-    .tile .lbl{font-size:14px;color:#444;margin-top:6px}
+    .countdown{display:flex;gap:14px;justify-content:center;margin:26px 12px 40px}
+    .tile{background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);padding:20px 18px;border-radius:16px;min-width:90px;box-shadow:0 6px 18px rgba(0,0,0,0.35);text-align:center;color:white;border:1px solid rgba(255,255,255,0.15)}
+    .tile .num{font-size:28px;font-weight:700;color:var(--accent)}
+    .tile .lbl{font-size:14px;color:#ddd;margin-top:6px}
 
-    main{max-width:980px;margin:0 auto;padding:20px}
-    .maps{display:grid;grid-template-columns:1fr;gap:20px}
+    main{max-width:1100px;margin:0 auto;padding:24px}
+    .maps{display:grid;grid-template-columns:1fr;gap:26px}
     @media(min-width:800px){.maps{grid-template-columns:1fr 1fr}}
 
-    .card{background:rgba(255,255,255,0.82);backdrop-filter:blur(6px);padding:18px;border-radius:16px;box-shadow:0 6px 24px rgba(0,0,0,0.07);font-family:'Cormorant Garamond',serif}
-    #map1,#map2{height:320px;border-radius:12px;border:1px solid rgba(0,0,0,0.06);margin-top:10px}
-    .loc-title{font-weight:700;margin-bottom:6px;font-size:22px;color:var(--accent)}
-    .venue-link{display:inline-block;margin-top:8px;padding:10px 14px;background:var(--accent);color:white;border-radius:10px;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:18px}
-    footer{font-size:15px;color:#333;text-align:center;padding:30px;font-family:'Cormorant Garamond',serif;background:rgba(255,255,255,0.7);margin-top:30px}
+    .card{background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);padding:20px;border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,0.4);color:white;border:1px solid rgba(255,255,255,0.15)}
+    #map1,#map2{height:330px;border-radius:14px;border:1px solid rgba(255,255,255,0.2);margin-top:12px}
+    .loc-title{font-weight:700;margin-bottom:6px;font-size:24px;color:var(--accent)}
+    .venue-link{display:inline-block;margin-top:12px;padding:12px 18px;background:var(--accent);color:black;font-weight:600;border-radius:10px;text-decoration:none;font-size:18px;border:1px solid var(--accent-dark)}
+
+    footer{font-size:16px;color:#f3f3f3;text-align:center;padding:32px;background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);margin-top:30px;font-family:'Playfair Display',serif;border-top:1px solid rgba(255,255,255,0.2)}
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -73,8 +77,8 @@
       <div class="card">
         <h3 style="margin-top:0">Współrzędne i odnośniki</h3>
         <ul>
-          <li>Kościół: 50.374880, 19.762330</li>
-          <li>Sala Impresja: 50.671712, 20.092148</li>
+          <li>Kościół: 50.374880, 19.762330 — ul. Kamiennogórska 11, 32-540 Wolbrom</li>
+          <li>Sala Impresja: 50.671712, 20.092148 — Jana Pawła II 27D, 28-362 Nagłowice</li>
         </ul>
         <p style="margin:0;color:#555">Możesz kliknąć pinezkę na mapie, aby otworzyć lokalizację w nowej karcie (OpenStreetMap).</p>
       </div>
@@ -87,43 +91,41 @@
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-o9N1j7kY7bGLv+vT2v1k6bQ6k1s9GZf3VZqgkD0f0Ro=" crossorigin=""></script>
-  <script>
-    // COUNTDOWN
-    const target = new Date(Date.UTC(2027,6,24,13,0,0)); // months 0-based, UTC to avoid timezone surprises
-    function updateCountdown(){
-      const now = new Date();
-      const diff = target - now;
-      if(diff<=0){
-        document.getElementById('days').textContent = '0';
-        document.getElementById('hours').textContent = '0';
-        document.getElementById('minutes').textContent = '0';
-        document.getElementById('seconds').textContent = '0';
-        clearInterval(timer);
-        return;
-      }
-      const sec = Math.floor(diff/1000)%60;
-      const min = Math.floor(diff/1000/60)%60;
-      const hrs = Math.floor(diff/1000/60/60)%24;
-      const days = Math.floor(diff/1000/60/60/24);
-      document.getElementById('days').textContent = String(days);
-      document.getElementById('hours').textContent = String(hrs).padStart(2,'0');
-      document.getElementById('minutes').textContent = String(min).padStart(2,'0');
-      document.getElementById('seconds').textContent = String(sec).padStart(2,'0');
-    }
-    updateCountdown();
-    const timer = setInterval(updateCountdown,1000);
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+  // COUNTDOWN
+  const target = new Date(Date.UTC(2027,6,24,13,0,0));
+  function updateCountdown(){
+    const now = new Date();
+    const diff = target - now;
+    if(diff<=0){clearInterval(timer);}    
+    const sec = Math.floor(diff/1000)%60;
+    const min = Math.floor(diff/1000/60)%60;
+    const hrs = Math.floor(diff/1000/60/60)%24;
+    const days = Math.floor(diff/1000/60/60/24);
+    document.getElementById('days').textContent = days;
+    document.getElementById('hours').textContent = String(hrs).padStart(2,'0');
+    document.getElementById('minutes').textContent = String(min).padStart(2,'0');
+    document.getElementById('seconds').textContent = String(sec).padStart(2,'0');
+  }
+  updateCountdown();
+  const timer = setInterval(updateCountdown,1000);
 
-    // MAPS (Leaflet + OpenStreetMap)
+  // MAP FIX — ENSURE MAP LOADS AFTER PAGE RENDER
+  window.onload = function(){
     const churchCoords = [50.374880, 19.762330];
     const venueCoords = [50.671712, 20.092148];
 
-    const map1 = L.map('map1', {scrollWheelZoom:false}).setView(churchCoords, 14);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(map1);
-    const marker1 = L.marker(churchCoords).addTo(map1).bindPopup('<strong>Parafia Podwyższenia Krzyża Świętego</strong><br>Kamiennogórska 11<br><a href="https://www.openstreetmap.org/?mlat=50.374880&mlon=19.762330#map=18/50.374880/19.762330" target="_blank">Otwórz w OSM</a>');
+    const map1 = L.map('map1').setView(churchCoords, 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(map1);
+    L.marker(churchCoords).addTo(map1);
+    setTimeout(()=>{map1.invalidateSize()},300);
 
-    const map2 = L.map('map2', {scrollWheelZoom:false}).setView(venueCoords, 14);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(map2);
-    const marker2 = L.marker(venueCoords).addTo(map2).bindPopup('<strong>Impresja Na Głowice</strong><br>Jana Pawła II 27D<br><a href="https://www.openstreetmap.org/?mlat=50.671712&mlon=20.092148#map=18/50.671712/20.092148" target="_blank">Otwórz w OSM</a>');
-  </script>
+    const map2 = L.map('map2').setView(venueCoords, 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(map2);
+    L.marker(venueCoords).addTo(map2);
+    setTimeout(()=>{map2.invalidateSize()},300);
+  }
+</script>
 </body>
 </html>
