@@ -3,69 +3,127 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Paulina i Dominik Dorobisz</title>
+  <title>Wesele Paulina & Dominik — 24.07.2027</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-sA+e2H0Qm3b2k6wM1eGk0hZbJkY3b1jv0v+3r3r0k+0=" crossorigin=""/>
   <style>
-    body{font-family:Arial,sans-serif;margin:0;padding:20px;background:#f6f8fb;display:flex;justify-content:center}
-    .container{max-width:900px;width:100%;background:white;padding:20px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
-    h1{text-align:center}
-    .countdown{display:flex;justify-content:center;gap:15px;margin:20px 0}
-    .box{background:#2b8cff;color:white;padding:15px;border-radius:8px;min-width:70px;text-align:center}
-    .label{font-size:0.9rem;opacity:0.8}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:20px}
-    .gallery-item{background:#e0e0e0;height:100px;display:flex;align-items:center;justify-content:center;color:#666;border-radius:8px;font-size:0.9rem}
-    footer{text-align:center;margin-top:20px;color:#666;font-size:0.85rem}
+    :root{--bg:#faf9f7;--accent:#8b0000}
+    body{
+      font-family:'Great Vibes', 'Cormorant Garamond', serif;
+      margin:0;
+      background:var(--bg) url('https://images.unsplash.com/photo-1529651737248-dad5e287768e?auto=format&fit=crop&w=1400&q=60') center/cover fixed;
+      color:#111;
+    }
+    header{background:rgba(255,255,255,0.75);backdrop-filter:blur(6px);padding:32px;text-align:center;border-bottom:1px solid rgba(0,0,0,0.08)}
+    h1{margin:0;font-size:clamp(32px,5vw,60px);font-family:'Great Vibes',cursive;color:var(--accent)}
+    .subtitle{color:#333;margin-top:10px;font-family:'Cormorant Garamond',serif;font-size:20px}
+
+    .countdown{display:flex;gap:10px;justify-content:center;margin:26px 12px 40px}
+    .tile{background:rgba(255,255,255,0.8);backdrop-filter:blur(6px);padding:18px;border-radius:14px;min-width:84px;box-shadow:0 6px 18px rgba(0,0,0,0.06);text-align:center;font-family:'Cormorant Garamond',serif}
+    .tile .num{font-size:26px;font-weight:700}
+    .tile .lbl{font-size:14px;color:#444;margin-top:6px}
+
+    main{max-width:980px;margin:0 auto;padding:20px}
+    .maps{display:grid;grid-template-columns:1fr;gap:20px}
+    @media(min-width:800px){.maps{grid-template-columns:1fr 1fr}}
+
+    .card{background:rgba(255,255,255,0.82);backdrop-filter:blur(6px);padding:18px;border-radius:16px;box-shadow:0 6px 24px rgba(0,0,0,0.07);font-family:'Cormorant Garamond',serif}
+    #map1,#map2{height:320px;border-radius:12px;border:1px solid rgba(0,0,0,0.06);margin-top:10px}
+    .loc-title{font-weight:700;margin-bottom:6px;font-size:22px;color:var(--accent)}
+    .venue-link{display:inline-block;margin-top:8px;padding:10px 14px;background:var(--accent);color:white;border-radius:10px;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:18px}
+    footer{font-size:15px;color:#333;text-align:center;padding:30px;font-family:'Cormorant Garamond',serif;background:rgba(255,255,255,0.7);margin-top:30px}
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h1>Moja strona z odliczaniem</h1>
+  <header>
+    <h1>Wesele Paulina Rzezała & Dominik Dorobisz</h1>
+    <div class="subtitle">Ceremonia ślubu: 24 lipca 2027, godz. 13:00</div>
+  </header>
 
-    <div class="countdown">
-      <div class="box">
-        <div id="days">0</div>
-        <div class="label">dni</div>
+  <main>
+    <section aria-labelledby="countdown">
+      <h2 id="countdown" style="text-align:center;margin-top:20px">Odliczanie</h2>
+      <div class="countdown" id="countdownTiles">
+        <div class="tile"><div class="num" id="days">--</div><div class="lbl">dni</div></div>
+        <div class="tile"><div class="num" id="hours">--</div><div class="lbl">godz.</div></div>
+        <div class="tile"><div class="num" id="minutes">--</div><div class="lbl">min.</div></div>
+        <div class="tile"><div class="num" id="seconds">--</div><div class="lbl">sek.</div></div>
       </div>
-      <div class="box">
-        <div id="hours">00</div>
-        <div class="label">godz.</div>
-      </div>
-      <div class="box">
-        <div id="minutes">00</div>
-        <div class="label">min</div>
-      </div>
-      <div class="box">
-        <div id="seconds">00</div>
-        <div class="label">sek</div>
-      </div>
-    </div>
+    </section>
 
-    <h2>Galeria</h2>
-    <div class="gallery">
-      <div class="gallery-item">Brak zdjęć</div>
-    </div>
+    <section class="maps">
+      <div class="card">
+        <div class="loc-title">Ceremonia ślubu — Parafia Podwyższenia Krzyża Świętego</div>
+        <div>ul. Kamiennogórska 11, 32-540 Wolbrom</div>
+        <div id="map1" aria-label="Mapa - kościół"></div>
+        <p style="margin-top:8px">Godzina: <strong>24.07.2027, 13:00</strong></p>
+      </div>
 
-    <footer>Strona działa na GitHub Pages</footer>
-  </div>
+      <div class="card">
+        <div class="loc-title">Po ceremonii zapraszamy na salę weselną — Impresja Na Głowice</div>
+        <div>ul. Jana Pawła II 27D, 28-362 Nagłowice</div>
+        <div id="map2" aria-label="Mapa - sala weselna"></div>
+        <a class="venue-link" href="https://impresjanaglowice.pl/" target="_blank" rel="noopener">Strona sali — Impresja Na Głowice</a>
+      </div>
+    </section>
 
+    <section style="margin-top:18px">
+      <div class="card">
+        <h3 style="margin-top:0">Współrzędne i odnośniki</h3>
+        <ul>
+          <li>Kościół: 50.374880, 19.762330</li>
+          <li>Sala Impresja: 50.671712, 20.092148</li>
+        </ul>
+        <p style="margin:0;color:#555">Możesz kliknąć pinezkę na mapie, aby otworzyć lokalizację w nowej karcie (OpenStreetMap).</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Strona przygotowana dla Pauliny i Dominika — sprawdź dojazd i potwierdź obecność. ❤️
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-o9N1j7kY7bGLv+vT2v1k6bQ6k1s9GZf3VZqgkD0f0Ro=" crossorigin=""></script>
   <script>
-    const TARGET_DATE = '2027-07-24T13:00:00';
-
+    // COUNTDOWN
+    const target = new Date(Date.UTC(2027,6,24,13,0,0)); // months 0-based, UTC to avoid timezone surprises
     function updateCountdown(){
       const now = new Date();
-      const target = new Date(TARGET_DATE);
-      const diff = Math.max(0,target-now);
+      const diff = target - now;
+      if(diff<=0){
+        document.getElementById('days').textContent = '0';
+        document.getElementById('hours').textContent = '0';
+        document.getElementById('minutes').textContent = '0';
+        document.getElementById('seconds').textContent = '0';
+        clearInterval(timer);
+        return;
+      }
       const sec = Math.floor(diff/1000)%60;
       const min = Math.floor(diff/1000/60)%60;
-      const hr = Math.floor(diff/1000/3600)%24;
-      const days = Math.floor(diff/1000/3600/24);
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = String(hr).padStart(2,'0');
+      const hrs = Math.floor(diff/1000/60/60)%24;
+      const days = Math.floor(diff/1000/60/60/24);
+      document.getElementById('days').textContent = String(days);
+      document.getElementById('hours').textContent = String(hrs).padStart(2,'0');
       document.getElementById('minutes').textContent = String(min).padStart(2,'0');
       document.getElementById('seconds').textContent = String(sec).padStart(2,'0');
-      if(diff<=0) clearInterval(interval);
     }
-    const interval = setInterval(updateCountdown,1000);
     updateCountdown();
+    const timer = setInterval(updateCountdown,1000);
+
+    // MAPS (Leaflet + OpenStreetMap)
+    const churchCoords = [50.374880, 19.762330];
+    const venueCoords = [50.671712, 20.092148];
+
+    const map1 = L.map('map1', {scrollWheelZoom:false}).setView(churchCoords, 14);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(map1);
+    const marker1 = L.marker(churchCoords).addTo(map1).bindPopup('<strong>Parafia Podwyższenia Krzyża Świętego</strong><br>Kamiennogórska 11<br><a href="https://www.openstreetmap.org/?mlat=50.374880&mlon=19.762330#map=18/50.374880/19.762330" target="_blank">Otwórz w OSM</a>');
+
+    const map2 = L.map('map2', {scrollWheelZoom:false}).setView(venueCoords, 14);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(map2);
+    const marker2 = L.marker(venueCoords).addTo(map2).bindPopup('<strong>Impresja Na Głowice</strong><br>Jana Pawła II 27D<br><a href="https://www.openstreetmap.org/?mlat=50.671712&mlon=20.092148#map=18/50.671712/20.092148" target="_blank">Otwórz w OSM</a>');
   </script>
 </body>
 </html>
