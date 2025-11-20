@@ -4,12 +4,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Paulina & Dominik — Wesele 24.07.2027</title>
-<meta name="description" content="Zaproszenie na wesele Pauliny i Dominika — 24 lipca 2027. Odliczanie, lokalizacje, RSVP, harmonogram.">
+<meta name="description" content="Zaproszenie na wesele Pauliny i Dominika — 24 lipca 2027. Odliczanie, lokalizacje, RSVP, harmonogram, galeria.">
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/csszel:wght@600&family=Cormorant+Garamond:wght@400;500&display=swap
+https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cormorant+Garamond:wght@400;500&display=swap
 <!-- Leaflet CSS -->
-https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+<link rel="stylesheet" href="https://unpkg.comss
+<!-- Lightbox CSS -->
+https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css
 
 <style>
 :root {
@@ -18,7 +20,7 @@ https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
   --primary:#444; --secondary:#666;
 }
 
-/* Animowane tło */
+/* Animowane tło + parallax */
 body {
   margin:0;
   font-family:var(--font-main);
@@ -26,6 +28,8 @@ body {
   background:linear-gradient(120deg,#fff,#f8f8f8,#eaeaea);
   background-size:400% 400%;
   animation:glow 12s ease infinite;
+  position:relative;
+  overflow-x:hidden;
 }
 @keyframes glow {
   0%{background-position:0% 50%;}
@@ -33,6 +37,19 @@ body {
   100%{background-position:0% 50%;}
 }
 
+/* Warstwa z grafiką */
+body::before {
+  content:"";
+  position:fixed;
+  top:0;left:0;width:100%;height:120%;
+  background:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;
+  opacity:0.15;
+  z-index:-1;
+  transform:translateY(0);
+  transition:transform 0.2s ease-out;
+}
+
+/* Header */
 header {
   background:rgba(255,255,255,0.9);
   padding:50px;text-align:center;border-bottom:2px solid var(--accent);
@@ -106,16 +123,47 @@ main {max-width:1100px;margin:0 auto;padding:24px;}
   border:2px solid var(--accent);
   border-radius:50%;
 }
-.time {
-  font-weight:700;
-  font-size:18px;
-  color:#555;
-  margin-bottom:6px;
+.time {font-weight:700;font-size:18px;color:#555;margin-bottom:6px;}
+.event {font-size:16px;color:#666;}
+
+/* Gallery */
+.gallery {opacity:0;transform:translateY(30px);transition:.8s;text-align:center;}
+.gallery h2 {font-family:var(--font-title);margin-bottom:20px;}
+.gallery-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:16px;
 }
-.event {
-  font-size:16px;
-  color:#666;
+.gallery-grid img {
+  width:100%;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  transition:transform .3s ease;
 }
+.gallery-grid img:hover {transform:scale(1.05);}
+
+/* Directions */
+.directions {opacity:0;transform:translateY(30px);transition:.8s;text-align:center;}
+.directions h2 {font-family:var(--font-title);margin-bottom:20px;}
+.directions-links {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-width:400px;
+  margin:0 auto;
+}
+.directions-links a {
+  display:block;
+  padding:12px;
+  background:#fff;
+  border:1px solid var(--accent);
+  border-radius:8px;
+  text-decoration:none;
+  color:#333;
+  font-weight:600;
+  transition:.3s;
+}
+.directions-links a:hover {background:#f0f0f0;}
 
 footer {font-size:16px;color:#555;text-align:center;padding:32px;background:#fafafa;border-top:2px solid var(--accent);margin-top:30px;font-family:'Playfair Display',serif;}
 </style>
@@ -149,7 +197,9 @@ footer {font-size:16px;color:#555;text-align:center;padding:32px;background:#faf
     <div class="card">
       <div class="loc-title">Przyjęcie weselne — Impresja Na Głowice</div>
       <div>ul. Jana Pawła II 27D, 28-362 Nagłowice</div>
-      <a class="venue-link" href="https://impresjanaglowice.pl/" target</section>
+      <a class="venue-link" href="https://impresjanli</a>
+    </div>
+  </section>
 
   <!-- RSVP -->
   <section class="rsvp" style="margin-top:18px">
@@ -168,22 +218,31 @@ footer {font-size:16px;color:#555;text-align:center;padding:32px;background:#faf
   <section class="timeline" style="margin-top:40px;">
     <h2 style="text-align:center;font-family:var(--font-title);margin-bottom:20px;">Harmonogram dnia</h2>
     <div class="timeline-container">
-      <div class="timeline-item">
-        <div class="time">13:00</div>
-        <div class="event">Ceremonia ślubna (Kościół) — <em>Do uzupełnienia</em></div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">15:00</div>
-        <div class="event">Przyjęcie weselne — <em>Do uzupełnienia</em></div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">18:00</div>
-        <div class="event">Atrakcje — <em>Do uzupełnienia</em></div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">00:00</div>
-        <div class="event">Zakończenie — <em>Do uzupełnienia</em></div>
-      </div>
+      <div class="timeline-item"><div class="time">13:00</div><div class="event">Ceremonia ślubna — <em>Do uzupełnienia</em></div></div>
+      <div class="timeline-item"><div class="time">15:00</div><div class="event">Przyjęcie weselne — <em>Do uzupełnienia</em></div></div>
+      <div class="timeline-item"><div class="time">18:00</div><div class="event">Atrakcje — <em>Do uzupełnienia</em></div></div>
+      <div class="timeline-item"><div class="time">00:00</div><div class="event">Zakończenie — <em>Do uzupełnienia</em></div></div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery" style="margin-top:40px;">
+    <h2>Galeria zdjęć</h2>
+    <div class="gallery-grid">
+      https://source.unsplash.com/600x400/?wedding<img src="https://source.unsplash00/?wedding</a>
+      https://source.unsplash.com/600x400/?couple<img src="urce.unsplash.com/300x200/?couple</a>
+      https://source.unsplash.com/600x400/?flowers<img src="https://source.unsplash.com/300x200/?flowers" alts://source.unsplash.com/600x400/?ringshttps://source.unsplash.com/300x200/?rings</a>
+    </div>
+  </section>
+
+  <!-- Directions -->
+  <section class="directions" style="margin-top:40px;">
+    <h2>Jak dojechać?</h2>
+    <div class="directions-links">
+      https://goo.gl/maps/KościółGoogle Maps — Kościół</a>
+      https://waze.com/KościółWaze — Kościół</a>
+      https://goo.gl/maps/SalaGoogle Maps — Sala weselna</a>
+      https://waze.com/SalaWaze — Sala weselna</a>
     </div>
   </section>
 </main>
@@ -191,12 +250,14 @@ footer {font-size:16px;color:#555;text-align:center;padding:32px;background:#faf
 <footer>Strona przygotowana z miłością przez Paulinę i Dominika ❤️</footer>
 
 <!-- Leaflet JS -->
-https://unpkg.com/leaflet@1.9.4/dist/leaflet.js</script>
+<script src="httpsleaflet@1.9.4/dist/leaflet.js</script>
 <!-- ScrollReveal -->
-<script src="https://unpkg.com/scrollt>
+https://unpkg.com/scrollreveal
+<!-- Lightbox JS -->
+<script src="https://cdnjs.cloudflare.com/ajaxx2/2.11.4/js/lightbox.min.js</script>
 <script>
 // COUNTDOWN
-const target = new Date(Date.UTC(2027,6,24,11,0,0)); // 13:00 PL = 11:00 UTC
+const target = new Date(Date.UTC(2027,6,24,11,0,0));
 function updateCountdown(){
   const now = new Date();
   const diff = target - now;
@@ -218,13 +279,11 @@ const timer = setInterval(updateCountdown,1000);
 
 // LEAFLET MAP
 const map = L.map('map').setView([50.374880,19.762330], 9);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap'
-}).addTo(map);
-L.marker([50.374880('Kościół');
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }).addTo(map);
+L.marker([50.374880,19.762330]).addTo(map).bindPopup('Kościół');
 L.marker([50.671712,20.092148]).addTo(map).bindPopup('Sala Impresja');
 
-// RSVP
+//
 document.getElementById('rsvpForm').addEventListener('submit',e=>{
   e.preventDefault();
   const name=document.getElementById('name').value.trim();
@@ -241,6 +300,22 @@ ScrollReveal().reveal('.countdown',{delay:400,duration:800,origin:'bottom',dista
 ScrollReveal().reveal('.maps',{delay:600,duration:800,origin:'bottom',distance:'30px',opacity:0});
 ScrollReveal().reveal('.rsvp',{delay:800,duration:800,origin:'bottom',distance:'30px',opacity:0});
 ScrollReveal().reveal('.timeline',{delay:1000,duration:800,origin:'bottom',distance:'30px',opacity:0});
-</script>
-</body>
-</html>
+ScrollReveal().reveal('.gallery',{delay:1200,duration:800,origin:'bottom',distance:'30px',opacity:0});
+ScrollReveal().reveal('.directions',{delay:1400,duration:800,origin:'bottom',distance:'30px',opacity:0});
+
+// PARALLAX EFFECT
+window.addEventListener('scroll',()=>{
+  const scrollY = window.scrollY;
+  document.body.style.setProperty('--scroll', scrollY);
+  document.body.style.setProperty('--scroll', scrollY);
+  document.body.style.setProperty('--scroll', scrollY);
+  document.body.style.setProperty('--scroll', scrollY);
+  document.body.style.setProperty('--scroll', scrollY);
+  document.body.style.setProperty('--scroll', scrollY);
+  document.body.style.setProperty('--scroll', scrollY);
+  document.body.style.setProperty('--scroll', scrollY);
+  document.body.style.setProperty('--scroll', scrollY);
+  document.body.style.setProperty('--scroll', scrollY);
+  document.body.style.setProperty('--scroll', scrollY);
+  document.body.style.setProperty('--scroll', scrollY);
+  document.body.style.setProperty('--scroll', scrollY);
