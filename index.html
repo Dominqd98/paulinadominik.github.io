@@ -4,76 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Wesele Paulina & Dominik — 24.07.2027</title>
-  <meta name="description" content="Zaproszenie na wesele Pauliny i Dominika — 24 lipca 2027. Odliczanie, lokalizacje, RSVP.">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@le>
-    :root {
-      --bg:#fdfdfd; --accent:#cfcfcf; --accent2:#eaeaea;
-      --font-main:'Cormorant Garamond',serif; --font-title:'Cinzel',serif;
-      --primary:#555; --secondary:#777; --highlight:#f8f8f8;
-    }
-    body {
-      font-family:var(--font-main);
-      margin:0;
-      background:var(--bg) url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=60') center/cover fixed;
-      color:#111;
-    }
-    header {
-      background:linear-gradient(180deg,#fff,#f3f3f3);
-      padding:40px;text-align:center;border-bottom:2px solid var(--accent);
-      opacity:0; transform:translateY(-20px); transition:all .8s ease;
-    }
-    h1 {
-      margin:0;font-size:clamp(42px,6vw,78px);
-      font-family:var(--font-title);color:var(--primary);letter-spacing:2px;font-weight:700;
-    }
-    .subtitle {color:var(--secondary);margin-top:14px;font-size:26px;font-weight:500;}
-    .countdown {display:flex;gap:14px;justify-content:center;margin:26px 12px 40px;opacity:0;transform:translateY(20px);transition:.8s;}
-    .tile {
-      background:linear-gradient(145deg,#fff,#e2e2e2);
-      border:1px solid var(--accent);padding:20px;border-radius:16px;min-width:90px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.07);text-align:center;color:#333;
-      transition:transform .3s ease;
-    }
-    .tile:hover {transform:scale(1.05);}
-    .tile .num {font-size:34px;font-weight:700;color:#555;font-family:var(--font-title);}
-    .tile .lbl {font-size:14px;color:#777;margin-top:6px;}
-    main {max-width:1100px;margin:0 auto;padding:24px;}
-    .maps {display:grid;grid-template-columns:1fr;gap:26px;opacity:0;transform:translateY(30px);transition:.8s;}
-    @media(min-width:800px){.maps{grid-template-columns:1fr 1fr;}}
-    .card {
-      background:linear-gradient(145deg,#fff,#ededed);
-      padding:20px;border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,0.08);
-      color:#333;border:1px solid var(--accent);transition:transform .3s ease;
-    }
-    .card:hover {transform:translateY(-6px);}
-    #map {width:100%;height:330px;border-radius:14px;margin-top:12px;}
-    .loc-title {font-weight:700;margin-bottom:8px;font-size:28px;color:#555;font-family:var(--font-title);}
-    .venue-link {
-      display:inline-block;margin-top:12px;padding:12px 18px;background:#e5e5e5;color:#333;font-weight:600;
-      border-radius:10px;text-decoration:none;font-size:18px;border:1px solid var(--accent);transition:.3s;
-    }
-    .venue-link:hover {background:#dcdcdc;}
-    footer {font-size:16px;color:#555;text-align:center;padding:32px;background:#fafafa;border-top:2px solid var(--accent);margin-top:30px;font-family:'Playfair Display',serif;}
-    /* RSVP */
-    .rsvp {opacity:0;transform:translateY(30px);transition:.8s;}
-    .rsvp form {display:flex;flex-direction:column;gap:12px;margin-top:12px;}
-    .rsvp input {padding:10px;border:1px solid var(--accent);border-radius:8px;font-size:16px;}
-    .rsvp button {padding:12px;background:#555;color:#fff;border:none;border-radius:8px;font-size:18px;cursor:pointer;transition:.3s;}
-    .rsvp button:hover {background:#333;}
-  </style>
-  https://fonts.googleapis.com
-  <link rel="preconnect" href="https://f="https://fonts.googleapis.com/csszel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap
+  <meta name="description" content="Zaproszenie na wesele Pauliny i Dominika — odliczanie, lokalizacje, RSVP.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
   <header>
-    <h1>Wesele Paulina & Dominik</h1>
+    <h1><i class="fa-solid fa-ring"></i> Wesele Paulina & Dominik</h1>
     <div class="subtitle">Ceremonia ślubu: 24 lipca 2027, godz. 13:00</div>
   </header>
 
   <main>
-    <section aria-labelledby="countdown">
-      <h2 id="countdown" style="text-align:center;margin-top:20px">Odliczanie</h2>
-      <div class="countdown" id="countdownTiles">
+    <section id="countdown">
+      <h2><i class="fa-solid fa-clock"></i> Odliczanie</h2>
+      <div class="countdown">
         <div class="tile"><div class="num" id="days">--</div><div class="lbl">dni</div></div>
         <div class="tile"><div class="num" id="hours">--</div><div class="lbl">godz.</div></div>
         <div class="tile"><div class="num" id="minutes">--</div><div class="lbl">min.</div></div>
@@ -83,81 +28,27 @@
 
     <section class="maps">
       <div class="card">
-        <div class="loc-title">Ceremonia ślubu — Parafia Podwyższenia Krzyża Świętego</div>
-        <div>ul. Kamiennogórska 11, 32-540 Wolbrom</div>
+        <div class="loc-title"><i class="fa-solid fa-church"></i> Ceremonia ślubu</div>
         <div id="map"></div>
-        <p style="margin-top:8px">Godzina: <strong>24.07.2027, 13:00</strong></p>
       </div>
       <div class="card">
-        <div class="loc-title">Po ceremonii zapraszamy na salę weselną — Impresja Na Głowice</div>
-        <div>ul. Jana Pawła II 27D, 28-362 Nagłowice</div>
-        <a class="venue-link" href="https://impresjanaglowice.pl/" target>
+        <div class="loc-title"><i class="fa-solid fa-champagne-glasses"></i> Sala weselna</div>
+        <a class="venue-link" href="https://impresjanaglowice.pl/" target="_blank">Strona sali</a>
       </div>
     </section>
 
-    <section class="rsvp" style="margin-top:18px">
-      <div class="card">
-        <h3 style="margin-top:0">Potwierdź obecność (RSVP)</h3>
-        <form id="rsvpForm">
-          <input type="text" id="name" placeholder="Twoje imię i nazwisko" required>
-          <input type="number" id="guests" placeholder="Liczba osób" min="1" required>
-          <button type="submit">Wyślij</button>
-        </form>
-        <p id="rsvpMsg" style="color:#555;margin-top:10px;"></p>
-      </div>
+    <section class="rsvp">
+      <h3><i class="fa-solid fa-heart"></i> Potwierdź obecność</h3>
+      <form id="rsvpForm">
+        <input type="text" id="name" placeholder="Twoje imię i nazwisko" required>
+        <input type="number" id="guests" placeholder="Liczba osób" min="1" required>
+        <button type="submit">Wyślij</button>
+      </form>
+      <p id="rsvpMsg"></p>
     </section>
-  </main>
+  <div class='decor'><img src='assets/glamour2.jpg' alt='Dekor glamour' style='width:100%;border-radius:12px;margin-top:20px;'></div></main>
 
   <footer>Strona przygotowana przez Dominika i Paulinę</footer>
-
-  <script src="https://unpkg1.9.4/dist/leaflet.js</script>
-  <script src="https://unpkg.com/scrollrevealscript>
-    // COUNTDOWN
-    const target = new Date(Date.UTC(2027,6,24,11,0,0)); // 13:00 PL = 11:00 UTC
-    function updateCountdown(){
-      const now = new Date();
-      const diff = target - now;
-      if(diff <= 0){
-        ['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00');
-        clearInterval(timer); return;
-      }
-      const sec = Math.floor(diff/1000)%60;
-      const min = Math.floor(diff/1000/60)%60;
-      const hrs = Math.floor(diff/1000/60/60)%24;
-      const days = Math.floor(diff/1000/60/60/24);
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = hrs.toString().padStart(2,'0');
-      document.getElementById('minutes').textContent = min.toString().padStart(2,'0');
-      document.getElementById('seconds').textContent = sec.toString().padStart(2,'0');
-    }
-    updateCountdown();
-    const timer = setInterval(updateCountdown,1000);
-
-    // LEAFLET MAP
-   ('map').setView([50.374880,19.762330], 9);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap'
-    }).addTo(map);
-    const church = L.marker([50.374880,19.762330]).addTo(map).bindPopup('Kościół');
-    const hall = L.marker([50.671712,20.092148]).addTo(map).bindPopup('Sala Impresja');
-    church.on('click',()=>window.open('https://www.openstreetmap.org/?mlat=50.374880&mlon=19.762330','_blank'));
-    hall.on('click',()=>window.open('https://www.openstreetmap.org/?mlat=50.671712&mlon=20.092148','_blank'));
-
-    // RSVP
-    document.getElementById('rsvpForm').addEventListener('submit',e=>{
-      e.preventDefault();
-      const name=document.getElementById('name').value.trim();
-      const guests=document.getElementById('guests').value;
-      if(name && guests>0){
-        document.getElementById('rsvpMsg').textContent='Dziękujemy za potwierdzenie!';
-        e.target.reset();
-      }
-    });
-
-    // SCROLL REVEAL
-    ScrollReveal().reveal('header',{delay:200,duration:800,origin:'top',distance:'20px',opacity:0});
-    ScrollReveal().reveal('.countdown',{delay:400,duration:800,origin:'bottom',distance:'20px',opacity:0});
-    ScrollReveal().reveal('.maps',{delay:600,duration:800,origin:'bottom',distance:'30px',opacity:0});
-    ScrollReveal().reveal('.rsvp',{delay:800,duration:800,origin:'bottom',distance:'30px',opacity:0});
-  </script>
+  <script src="script.js"></script>
 </body>
+</html>

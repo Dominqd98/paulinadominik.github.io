@@ -1,0 +1,10 @@
+body{font-family:'Cormorant Garamond',serif;margin:0;background:#fdfdfd;color:#111;}
+header{text-align:center;padding:40px;background:#fff;border-bottom:2px solid #ccc;}
+h1 i,h2 i,h3 i{color:#d4af37;margin-right:8px;text-shadow:0 2px 4px rgba(0,0,0,0.2);} 
+.countdown{display:flex;gap:14px;justify-content:center;margin:20px;}
+.tile{background:#fff;border:1px solid #ccc;padding:20px;border-radius:16px;transition:.3s;}
+.tile:hover{transform:scale(1.05);} 
+.maps,.rsvp{margin:20px;padding:20px;border:1px solid #ccc;border-radius:16px;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.1);} 
+button{background:#555;color:#fff;padding:12px;border:none;border-radius:8px;font-size:18px;cursor:pointer;} 
+button:hover{background:#333;}
+header{background:url('assets/glamour1.jpg') center/cover no-repeat;}
