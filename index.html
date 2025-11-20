@@ -5,179 +5,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Paulina & Dominik — Wesele 24.07.2027</title>
 <meta name="description" content="Zaproszenie na wesele Pauliny i Dominika — 24 lipca 2027. Odliczanie, lokalizacje, RSVP, harmonogram, galeria.">
-
-<!-- Google Fonts -->
-https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cormorant+Garamond:wght@400;500&display=swap
-<!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.comss
-<!-- Lightbox CSS -->
-https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css
-
-<style>
-:root {
-  --bg:#ffffff; --accent:#dcdcdc; --silver:#e8e8e8;
-  --font-main:'Cormorant Garamond',serif; --font-title:'Cinzel',serif;
-  --primary:#444; --secondary:#666;
-}
-
-/* Animowane tło + parallax */
-body {
-  margin:0;
-  font-family:var(--font-main);
-  color:#111;
-  background:linear-gradient(120deg,#fff,#f8f8f8,#eaeaea);
-  background-size:400% 400%;
-  animation:glow 12s ease infinite;
-  position:relative;
-  overflow-x:hidden;
-}
-@keyframes glow {
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-
-/* Warstwa z grafiką */
-body::before {
-  content:"";
-  position:fixed;
-  top:0;left:0;width:100%;height:120%;
-  background:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;
-  opacity:0.15;
-  z-index:-1;
-  transform:translateY(0);
-  transition:transform 0.2s ease-out;
-}
-
-/* Header */
-header {
-  background:rgba(255,255,255,0.9);
-  padding:50px;text-align:center;border-bottom:2px solid var(--accent);
-  opacity:0; transform:translateY(-20px); transition:all .8s ease;
-}
-h1 {
-  margin:0;font-size:clamp(42px,6vw,78px);
-  font-family:var(--font-title);color:var(--primary);letter-spacing:2px;font-weight:700;
-}
-.subtitle {color:var(--secondary);margin-top:14px;font-size:26px;font-weight:500;}
-
-/* Countdown */
-.countdown {display:flex;gap:14px;justify-content:center;margin:26px 12px 40px;opacity:0;transform:translateY(20px);transition:.8s;}
-.tile {
-  background:#fff;border:1px solid var(--accent);padding:20px;border-radius:16px;min-width:90px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.07);text-align:center;color:#333;
-  transition:transform .3s ease;
-}
-.tile:hover {transform:scale(1.05);}
-.tile .num {font-size:34px;font-weight:700;color:#555;font-family:var(--font-title);}
-.tile .lbl {font-size:14px;color:#777;margin-top:6px;}
-
-main {max-width:1100px;margin:0 auto;padding:24px;}
-
-/* Maps */
-.maps {display:grid;grid-template-columns:1fr;gap:26px;opacity:0;transform:translateY(30px);transition:.8s;}
-@media(min-width:800px){.maps{grid-template-columns:1fr 1fr;}}
-.card {
-  background:#fff;padding:20px;border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,0.08);
-  color:#333;border:1px solid var(--accent);transition:transform .3s ease;
-}
-.card:hover {transform:translateY(-6px);}
-#map {width:100%;height:330px;border-radius:14px;margin-top:12px;}
-.loc-title {font-weight:700;margin-bottom:8px;font-size:28px;color:#555;font-family:var(--font-title);}
-.venue-link {
-  display:inline-block;margin-top:12px;padding:12px 18px;background:var(--silver);color:#333;font-weight:600;
-  border-radius:10px;text-decoration:none;font-size:18px;border:1px solid var(--accent);transition:.3s;
-}
-.venue-link:hover {background:#dcdcdc;}
-
-/* RSVP */
-.rsvp {opacity:0;transform:translateY(30px);transition:.8s;}
-.rsvp form {display:flex;flex-direction:column;gap:12px;margin-top:12px;}
-.rsvp input {padding:10px;border:1px solid var(--accent);border-radius:8px;font-size:16px;}
-.rsvp button {padding:12px;background:#555;color:#fff;border:none;border-radius:8px;font-size:18px;cursor:pointer;transition:.3s;}
-.rsvp button:hover {background:#333;}
-
-/* Timeline */
-.timeline {opacity:0;transform:translateY(30px);transition:.8s;}
-.timeline-container {
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-  max-width:700px;
-  margin:0 auto;
-  padding:20px;
-  border-left:3px solid var(--accent);
-}
-.timeline-item {
-  position:relative;
-  padding-left:20px;
-}
-.timeline-item::before {
-  content:"";
-  position:absolute;
-  left:-10px;
-  top:8px;
-  width:14px;
-  height:14px;
-  background:#fff;
-  border:2px solid var(--accent);
-  border-radius:50%;
-}
-.time {font-weight:700;font-size:18px;color:#555;margin-bottom:6px;}
-.event {font-size:16px;color:#666;}
-
-/* Gallery */
-.gallery {opacity:0;transform:translateY(30px);transition:.8s;text-align:center;}
-.gallery h2 {font-family:var(--font-title);margin-bottom:20px;}
-.gallery-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:16px;
-}
-.gallery-grid img {
-  width:100%;
-  border-radius:12px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  transition:transform .3s ease;
-}
-.gallery-grid img:hover {transform:scale(1.05);}
-
-/* Directions */
-.directions {opacity:0;transform:translateY(30px);transition:.8s;text-align:center;}
-.directions h2 {font-family:var(--font-title);margin-bottom:20px;}
-.directions-links {
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  max-width:400px;
-  margin:0 auto;
-}
-.directions-links a {
-  display:block;
-  padding:12px;
-  background:#fff;
-  border:1px solid var(--accent);
-  border-radius:8px;
-  text-decoration:none;
-  color:#333;
-  font-weight:600;
-  transition:.3s;
-}
-.directions-links a:hover {background:#f0f0f0;}
-
-footer {font-size:16px;color:#555;text-align:center;padding:32px;background:#fafafa;border-top:2px solid var(--accent);margin-top:30px;font-family:'Playfair Display',serif;}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
   <h1>Paulina & Dominik</h1>
   <div class="subtitle">Ślub i wesele — 24 lipca 2027, godz. 13:00</div>
 </header>
-
 <main>
-  <!-- Countdown -->
   <section aria-labelledby="countdown">
-    <h2 id="countdown" style="text-align:center;margin-top:20px">Odliczamy do wielkiego dnia!</h2>
+    <h2 id="countdown">Odliczamy do wielkiego dnia!</h2>
     <div class="countdown" id="countdownTiles">
       <div class="tile"><div class="num" id="days">--</div><div class="lbl">dni</div></div>
       <div class="tile"><div class="num" id="hours">--</div><div class="lbl">godz.</div></div>
@@ -185,137 +25,56 @@ footer {font-size:16px;color:#555;text-align:center;padding:32px;background:#faf
       <div class="tile"><div class="num" id="seconds">--</div><div class="lbl">sek.</div></div>
     </div>
   </section>
-
-  <!-- Maps -->
   <section class="maps">
     <div class="card">
       <div class="loc-title">Ceremonia ślubu — Parafia Podwyższenia Krzyża Świętego</div>
       <div>ul. Kamiennogórska 11, 32-540 Wolbrom</div>
       <div id="map"></div>
-      <p style="margin-top:8px">Godzina: <strong>24.07.2027, 13:00</strong></p>
     </div>
     <div class="card">
       <div class="loc-title">Przyjęcie weselne — Impresja Na Głowice</div>
       <div>ul. Jana Pawła II 27D, 28-362 Nagłowice</div>
-      <a class="venue-link" href="https://impresjanli</a>
     </div>
   </section>
-
-  <!-- RSVP -->
-  <section class="rsvp" style="margin-top:18px">
+  <section class="rsvp">
     <div class="card">
-      <h3 style="margin-top:0">Potwierdź obecność (RSVP)</h3>
+      <h3>Potwierdź obecność (RSVP)</h3>
       <form id="rsvpForm">
         <input type="text" id="name" placeholder="Twoje imię i nazwisko" required>
         <input type="number" id="guests" placeholder="Liczba osób" min="1" required>
         <button type="submit">Wyślij</button>
       </form>
-      <p id="rsvpMsg" style="color:#555;margin-top:10px;"></p>
+      <p id="rsvpMsg"></p>
     </div>
   </section>
-
-  <!-- Timeline -->
-  <section class="timeline" style="margin-top:40px;">
-    <h2 style="text-align:center;font-family:var(--font-title);margin-bottom:20px;">Harmonogram dnia</h2>
+  <section class="timeline">
+    <h2>Harmonogram dnia</h2>
     <div class="timeline-container">
       <div class="timeline-item"><div class="time">13:00</div><div class="event">Ceremonia ślubna — <em>Do uzupełnienia</em></div></div>
       <div class="timeline-item"><div class="time">15:00</div><div class="event">Przyjęcie weselne — <em>Do uzupełnienia</em></div></div>
-      <div class="timeline-item"><div class="time">18:00</div><div class="event">Atrakcje — <em>Do uzupełnienia</em></div></div>
-      <div class="timeline-item"><div class="time">00:00</div><div class="event">Zakończenie — <em>Do uzupełnienia</em></div></div>
     </div>
   </section>
-
-  <!-- Gallery -->
-  <section class="gallery" style="margin-top:40px;">
+  <section class="gallery">
     <h2>Galeria zdjęć</h2>
     <div class="gallery-grid">
-      https://source.unsplash.com/600x400/?wedding<img src="https://source.unsplash00/?wedding</a>
-      https://source.unsplash.com/600x400/?couple<img src="urce.unsplash.com/300x200/?couple</a>
-      https://source.unsplash.com/600x400/?flowers<img src="https://source.unsplash.com/300x200/?flowers" alts://source.unsplash.com/600x400/?ringshttps://source.unsplash.com/300x200/?rings</a>
+      <a href="assets/gallery1.jpg" data-lightbox="wedding"><img src="assets/gallery1.jpg" alt="Zdjęcie 1"></a>
+      <a href="assets/gallery2.jpg" data-lightbox="wedding"><img src="assets/gallery2.jpg" alt="Zdjęcie 2"></a>
+      <a href="assets/gallery3.jpg" data-lightbox="wedding"><img src="assets/gallery3.jpg" alt="Zdjęcie 3"></a>
+      <a href="assets/gallery4.jpg" data-lightbox="wedding"><img src="assets/gallery4.jpg" alt="Zdjęcie 4"></a>
     </div>
   </section>
-
-  <!-- Directions -->
-  <section class="directions" style="margin-top:40px;">
+  <section class="directions">
     <h2>Jak dojechać?</h2>
     <div class="directions-links">
-      https://goo.gl/maps/KościółGoogle Maps — Kościół</a>
-      https://waze.com/KościółWaze — Kościół</a>
-      https://goo.gl/maps/SalaGoogle Maps — Sala weselna</a>
-      https://waze.com/SalaWaze — Sala weselna</a>
+      <a href="https://goo.gl/maps/Kościół" target="_blank">Google Maps — Kościół</a>
+      <a href="https://goo.gl/maps/Sala" target="_blank">Google Maps — Sala weselna</a>
     </div>
   </section>
 </main>
-
 <footer>Strona przygotowana z miłością przez Paulinę i Dominika ❤️</footer>
-
-<!-- Leaflet JS -->
-<script src="httpsleaflet@1.9.4/dist/leaflet.js</script>
-<!-- ScrollReveal -->
-https://unpkg.com/scrollreveal
-<!-- Lightbox JS -->
-<script src="https://cdnjs.cloudflare.com/ajaxx2/2.11.4/js/lightbox.min.js</script>
-<script>
-// COUNTDOWN
-const target = new Date(Date.UTC(2027,6,24,11,0,0));
-function updateCountdown(){
-  const now = new Date();
-  const diff = target - now;
-  if(diff <= 0){
-    ['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00');
-    clearInterval(timer); return;
-  }
-  const sec = Math.floor(diff/1000)%60;
-  const min = Math.floor(diff/1000/60)%60;
-  const hrs = Math.floor(diff/1000/60/60)%24;
-  const days = Math.floor(diff/1000/60/60/24);
-  document.getElementById('days').textContent = days;
-  document.getElementById('hours').textContent = hrs.toString().padStart(2,'0');
-  document.getElementById('minutes').textContent = min.toString().padStart(2,'0');
-  document.getElementById('seconds').textContent = sec.toString().padStart(2,'0');
-}
-updateCountdown();
-const timer = setInterval(updateCountdown,1000);
-
-// LEAFLET MAP
-const map = L.map('map').setView([50.374880,19.762330], 9);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }).addTo(map);
-L.marker([50.374880,19.762330]).addTo(map).bindPopup('Kościół');
-L.marker([50.671712,20.092148]).addTo(map).bindPopup('Sala Impresja');
-
-//
-document.getElementById('rsvpForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const name=document.getElementById('name').value.trim();
-  const guests=document.getElementById('guests').value;
-  if(name && guests>0){
-    document.getElementById('rsvpMsg').textContent='Dziękujemy za potwierdzenie!';
-    e.target.reset();
-  }
-});
-
-// SCROLL REVEAL
-ScrollReveal().reveal('header',{delay:200,duration:800,origin:'top',distance:'20px',opacity:0});
-ScrollReveal().reveal('.countdown',{delay:400,duration:800,origin:'bottom',distance:'20px',opacity:0});
-ScrollReveal().reveal('.maps',{delay:600,duration:800,origin:'bottom',distance:'30px',opacity:0});
-ScrollReveal().reveal('.rsvp',{delay:800,duration:800,origin:'bottom',distance:'30px',opacity:0});
-ScrollReveal().reveal('.timeline',{delay:1000,duration:800,origin:'bottom',distance:'30px',opacity:0});
-ScrollReveal().reveal('.gallery',{delay:1200,duration:800,origin:'bottom',distance:'30px',opacity:0});
-ScrollReveal().reveal('.directions',{delay:1400,duration:800,origin:'bottom',distance:'30px',opacity:0});
-
-// PARALLAX EFFECT
-window.addEventListener('scroll',()=>{
-  const scrollY = window.scrollY;
-  document.body.style.setProperty('--scroll', scrollY);
-  document.body.style.setProperty('--scroll', scrollY);
-  document.body.style.setProperty('--scroll', scrollY);
-  document.body.style.setProperty('--scroll', scrollY);
-  document.body.style.setProperty('--scroll', scrollY);
-  document.body.style.setProperty('--scroll', scrollY);
-  document.body.style.setProperty('--scroll', scrollY);
-  document.body.style.setProperty('--scroll', scrollY);
-  document.body.style.setProperty('--scroll', scrollY);
-  document.body.style.setProperty('--scroll', scrollY);
-  document.body.style.setProperty('--scroll', scrollY);
-  document.body.style.setProperty('--scroll', scrollY);
-  document.body.style.setProperty('--scroll', scrollY);
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

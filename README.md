@@ -1,17 +1,12 @@
-# Wesele Paulina & Dominik
+# Wedding Website
 
-## Opis
-Strona zaproszenia na wesele z odliczaniem, mapą i formularzem RSVP.
+## Jak uruchomić?
+1. Wgraj pliki do repozytorium GitHub.
+2. W ustawieniach repo wybierz **Pages → Branch: main → /root**.
+3. Strona będzie dostępna pod adresem: `https://twoj-login.github.io/wedding-website`
 
-## Jak uruchomić lokalnie
-1. Sklonuj repozytorium: `git clone <URL>`
-2. Otwórz `index.html` w przeglądarce.
-
-## Wdrożenie na GitHub Pages
-1. Przejdź do ustawień repozytorium.
-2. W sekcji **Pages** wybierz branch `main` i folder `/root`.
-3. Zapisz ustawienia.
-4. Strona będzie dostępna pod adresem: `https://twoja-nazwa.github.io/nazwa-projektu`.
-
-## Ikony Font Awesome
-Projekt korzysta z CDN Font Awesome do ikon glamour (pierścionek, serce, kieliszki, kościół, zegar).
+## Struktura:
+- index.html — główna strona
+- style.css — style
+- script.js — skrypty (odliczanie, mapa, RSVP, parallax)
+- assets/ — obrazy (tło, galeria)
