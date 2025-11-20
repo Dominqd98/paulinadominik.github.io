@@ -4,15 +4,18 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Paulina & Dominik — Wesele 24.07.2027</title>
-<meta name="description" content="Zaproszenie na wesele Pauliny i Dominika — 24 lipca 2027. Odliczanie, lokalizacje, RSVP.">
+<meta name="description" content="Zaproszenie na wesele Pauliny i Dominika — 24 lipca 2027. Odliczanie, lokalizacje, RSVP, harmonogram.">
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cormorant+Garamond:wght@400=swap
+<link href="https://fonts.googleapis.com/csszel:wght@600&family=Cormorant+Garamond:wght@400;500&display=swap
 <!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9:root {
+https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+
+<style>
+:root {
   --bg:#ffffff; --accent:#dcdcdc; --silver:#e8e8e8;
   --font-main:'Cormorant Garamond',serif; --font-title:'Cinzel',serif;
-  --primary:#444; --secondary:#666; --gold:#c9a86a;
+  --primary:#444; --secondary:#666;
 }
 
 /* Animowane tło */
@@ -74,8 +77,45 @@ main {max-width:1100px;margin:0 auto;padding:24px;}
 .rsvp {opacity:0;transform:translateY(30px);transition:.8s;}
 .rsvp form {display:flex;flex-direction:column;gap:12px;margin-top:12px;}
 .rsvp input {padding:10px;border:1px solid var(--accent);border-radius:8px;font-size:16px;}
-.rsvp button {padding:12px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-size:18px;cursor:pointer;transition:.3s;}
-.rsvp button:hover {background:#a8864f;}
+.rsvp button {padding:12px;background:#555;color:#fff;border:none;border-radius:8px;font-size:18px;cursor:pointer;transition:.3s;}
+.rsvp button:hover {background:#333;}
+
+/* Timeline */
+.timeline {opacity:0;transform:translateY(30px);transition:.8s;}
+.timeline-container {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  max-width:700px;
+  margin:0 auto;
+  padding:20px;
+  border-left:3px solid var(--accent);
+}
+.timeline-item {
+  position:relative;
+  padding-left:20px;
+}
+.timeline-item::before {
+  content:"";
+  position:absolute;
+  left:-10px;
+  top:8px;
+  width:14px;
+  height:14px;
+  background:#fff;
+  border:2px solid var(--accent);
+  border-radius:50%;
+}
+.time {
+  font-weight:700;
+  font-size:18px;
+  color:#555;
+  margin-bottom:6px;
+}
+.event {
+  font-size:16px;
+  color:#666;
+}
 
 footer {font-size:16px;color:#555;text-align:center;padding:32px;background:#fafafa;border-top:2px solid var(--accent);margin-top:30px;font-family:'Playfair Display',serif;}
 </style>
@@ -87,6 +127,7 @@ footer {font-size:16px;color:#555;text-align:center;padding:32px;background:#faf
 </header>
 
 <main>
+  <!-- Countdown -->
   <section aria-labelledby="countdown">
     <h2 id="countdown" style="text-align:center;margin-top:20px">Odliczamy do wielkiego dnia!</h2>
     <div class="countdown" id="countdownTiles">
@@ -97,6 +138,7 @@ footer {font-size:16px;color:#555;text-align:center;padding:32px;background:#faf
     </div>
   </section>
 
+  <!-- Maps -->
   <section class="maps">
     <div class="card">
       <div class="loc-title">Ceremonia ślubu — Parafia Podwyższenia Krzyża Świętego</div>
@@ -107,10 +149,9 @@ footer {font-size:16px;color:#555;text-align:center;padding:32px;background:#faf
     <div class="card">
       <div class="loc-title">Przyjęcie weselne — Impresja Na Głowice</div>
       <div>ul. Jana Pawła II 27D, 28-362 Nagłowice</div>
-      https://impresjanaglowice.pl/Zobacz stronę sali</a>
-    </div>
-  </section>
+      <a class="venue-link" href="https://impresjanaglowice.pl/" target</section>
 
+  <!-- RSVP -->
   <section class="rsvp" style="margin-top:18px">
     <div class="card">
       <h3 style="margin-top:0">Potwierdź obecność (RSVP)</h3>
@@ -122,14 +163,37 @@ footer {font-size:16px;color:#555;text-align:center;padding:32px;background:#faf
       <p id="rsvpMsg" style="color:#555;margin-top:10px;"></p>
     </div>
   </section>
+
+  <!-- Timeline -->
+  <section class="timeline" style="margin-top:40px;">
+    <h2 style="text-align:center;font-family:var(--font-title);margin-bottom:20px;">Harmonogram dnia</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <div class="time">13:00</div>
+        <div class="event">Ceremonia ślubna (Kościół) — <em>Do uzupełnienia</em></div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">15:00</div>
+        <div class="event">Przyjęcie weselne — <em>Do uzupełnienia</em></div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">18:00</div>
+        <div class="event">Atrakcje — <em>Do uzupełnienia</em></div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">00:00</div>
+        <div class="event">Zakończenie — <em>Do uzupełnienia</em></div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>Strona przygotowana z miłością przez Paulinę i Dominika ❤️</footer>
 
 <!-- Leaflet JS -->
-<script src="https://unpkg.com/leafleteaflet.js</script>
+https://unpkg.com/leaflet@1.9.4/dist/leaflet.js</script>
 <!-- ScrollReveal -->
-<script src="https://ollreveal</script>
+<script src="https://unpkg.com/scrollt>
 <script>
 // COUNTDOWN
 const target = new Date(Date.UTC(2027,6,24,11,0,0)); // 13:00 PL = 11:00 UTC
@@ -149,20 +213,21 @@ function updateCountdown(){
   document.getElementById('minutes').textContent = min.toString().padStart(2,'0');
   document.getElementById('seconds').textContent = sec.toString().padStart(2,'0');
 }
-Countdown,1000);
+updateCountdown();
+const timer = setInterval(updateCountdown,1000);
 
 // LEAFLET MAP
 const map = L.map('map').setView([50.374880,19.762330], 9);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap'
 }).addTo(map);
-const church = L.marker([50.374880,19.762330]).addTo(map).bindPopup('Kościół');
-const hall = L.marker([50.671712,20.092148]).addTo(map).bindPopup('Sala Impresja');
+L.marker([50.374880('Kościół');
+L.marker([50.671712,20.092148]).addTo(map).bindPopup('Sala Impresja');
 
 // RSVP
 document.getElementById('rsvpForm').addEventListener('submit',e=>{
   e.preventDefault();
- =document.getElementById('name').value.trim();
+  const name=document.getElementById('name').value.trim();
   const guests=document.getElementById('guests').value;
   if(name && guests>0){
     document.getElementById('rsvpMsg').textContent='Dziękujemy za potwierdzenie!';
@@ -175,6 +240,7 @@ ScrollReveal().reveal('header',{delay:200,duration:800,origin:'top',distance:'20
 ScrollReveal().reveal('.countdown',{delay:400,duration:800,origin:'bottom',distance:'20px',opacity:0});
 ScrollReveal().reveal('.maps',{delay:600,duration:800,origin:'bottom',distance:'30px',opacity:0});
 ScrollReveal().reveal('.rsvp',{delay:800,duration:800,origin:'bottom',distance:'30px',opacity:0});
+ScrollReveal().reveal('.timeline',{delay:1000,duration:800,origin:'bottom',distance:'30px',opacity:0});
 </script>
 </body>
 </html>
