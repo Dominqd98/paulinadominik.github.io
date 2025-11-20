@@ -1,6 +1,23 @@
-body {margin:0;font-family:'Cormorant Garamond',serif;background:#fff;}
-header{text-align:center;padding:40px;background:rgba(255,255,255,0.9);}
-.countdown{display:flex;justify-content:center;gap:10px;margin:20px;}
-.tile{background:#fff;border:1px solid #ccc;padding:20px;border-radius:10px;}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
-.gallery-grid img{width:100%;border-radius:8px;}
+body{margin:0;font-family:'Cormorant Garamond',serif;background:#fff;}
+.navbar{position:fixed;top:0;width:100%;background:#fff;border-bottom:1px solid #ccc;display:flex;justify-content:space-between;align-items:center;padding:10px 20px;z-index:1000;}
+.navbar .logo{font-family:'Cinzel',serif;font-size:20px;font-weight:bold;}
+.nav-links{list-style:none;display:flex;gap:20px;}
+.nav-links li a{text-decoration:none;color:#333;font-weight:bold;}
+.hamburger{display:none;font-size:24px;background:none;border:none;cursor:pointer;}
+@media(max-width:768px){.nav-links{display:none;flex-direction:column;background:#fff;position:absolute;top:60px;right:20px;padding:10px;border:1px solid #ccc;}.nav-links.show{display:flex;}.hamburger{display:block;}}
+.start-section,.gallery-section,.directions-section,.timeline-section{text-align:center;padding:60px 20px;}
+.countdown{display:flex;gap:15px;justify-content:center;margin-top:20px;}
+.tile{background:#fff;border:1px solid #ccc;padding:20px;border-radius:10px;font-size:24px;}
+.carousel{overflow:hidden;width:90%;margin:auto;}
+.carousel-track{display:flex;animation:scroll 20s linear infinite;}
+.carousel-track img{width:300px;height:auto;margin-right:10px;border-radius:8px;}
+@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+#map{width:80%;height:400px;margin:auto;border-radius:10px;}
+.timeline-container{border-left:3px solid #ccc;max-width:600px;margin:auto;padding-left:20px;display:flex;flex-direction:column;gap:20px;}
+.timeline-item{position:relative;}
+.timeline-item::before{content:'';position:absolute;left:-10px;top:8px;width:14px;height:14px;background:#fff;border:2px solid #ccc;border-radius:50%;}
+.time{font-weight:bold;color:#333;}
+.event{color:#666;}
+footer{text-align:center;padding:20px;background:#fafafa;border-top:1px solid #ccc;}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 1s ease,transform 1s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}

@@ -4,77 +4,57 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Paulina & Dominik — Wesele 24.07.2027</title>
-<meta name="description" content="Zaproszenie na wesele Pauliny i Dominika — 24 lipca 2027. Odliczanie, lokalizacje, RSVP, harmonogram, galeria.">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>Paulina & Dominik</h1>
-  <div class="subtitle">Ślub i wesele — 24 lipca 2027, godz. 13:00</div>
-</header>
-<main>
-  <section aria-labelledby="countdown">
-    <h2 id="countdown">Odliczamy do wielkiego dnia!</h2>
-    <div class="countdown" id="countdownTiles">
-      <div class="tile"><div class="num" id="days">--</div><div class="lbl">dni</div></div>
-      <div class="tile"><div class="num" id="hours">--</div><div class="lbl">godz.</div></div>
-      <div class="tile"><div class="num" id="minutes">--</div><div class="lbl">min.</div></div>
-      <div class="tile"><div class="num" id="seconds">--</div><div class="lbl">sek.</div></div>
+<nav class="navbar">
+  <div class="logo">Paulina & Dominik</div>
+  <button class="hamburger">&#9776;</button>
+  <ul class="nav-links">
+    <li><a href="#start">Start</a></li>
+    <li><a href="#gallery">Galeria zdjęć</a></li>
+    <li><a href="#directions">Jak dojechać</a></li>
+    <li><a href="#timeline">Harmonogram</a></li>
+  </ul>
+</nav>
+<section id="start" class="start-section fade-in">
+  <h1>Ślub i wesele — 24 lipca 2027</h1>
+  <div class="countdown">
+    <div class="tile"><div id="days">--</div><span>d</span></div>
+    <div class="tile"><div id="hours">--</div><span>h</span></div>
+    <div class="tile"><div id="minutes">--</div><span>m</span></div>
+    <div class="tile"><div id="seconds">--</div><span>s</span></div>
+  </div>
+</section>
+<section id="gallery" class="gallery-section fade-in">
+  <h2>Galeria zdjęć</h2>
+  <div class="carousel">
+    <div class="carousel-track">
+      <img src="assets/gallery1.jpg" alt="Zdjęcie 1">
+      <img src="assets/gallery2.jpg" alt="Zdjęcie 2">
+      <img src="assets/gallery3.jpg" alt="Zdjęcie 3">
+      <img src="assets/gallery4.jpg" alt="Zdjęcie 4">
     </div>
-  </section>
-  <section class="maps">
-    <div class="card">
-      <div class="loc-title">Ceremonia ślubu — Parafia Podwyższenia Krzyża Świętego</div>
-      <div>ul. Kamiennogórska 11, 32-540 Wolbrom</div>
-      <div id="map"></div>
-    </div>
-    <div class="card">
-      <div class="loc-title">Przyjęcie weselne — Impresja Na Głowice</div>
-      <div>ul. Jana Pawła II 27D, 28-362 Nagłowice</div>
-    </div>
-  </section>
-  <section class="rsvp">
-    <div class="card">
-      <h3>Potwierdź obecność (RSVP)</h3>
-      <form id="rsvpForm">
-        <input type="text" id="name" placeholder="Twoje imię i nazwisko" required>
-        <input type="number" id="guests" placeholder="Liczba osób" min="1" required>
-        <button type="submit">Wyślij</button>
-      </form>
-      <p id="rsvpMsg"></p>
-    </div>
-  </section>
-  <section class="timeline">
-    <h2>Harmonogram dnia</h2>
-    <div class="timeline-container">
-      <div class="timeline-item"><div class="time">13:00</div><div class="event">Ceremonia ślubna — <em>Do uzupełnienia</em></div></div>
-      <div class="timeline-item"><div class="time">15:00</div><div class="event">Przyjęcie weselne — <em>Do uzupełnienia</em></div></div>
-    </div>
-  </section>
-  <section class="gallery">
-    <h2>Galeria zdjęć</h2>
-    <div class="gallery-grid">
-      <a href="assets/gallery1.jpg" data-lightbox="wedding"><img src="assets/gallery1.jpg" alt="Zdjęcie 1"></a>
-      <a href="assets/gallery2.jpg" data-lightbox="wedding"><img src="assets/gallery2.jpg" alt="Zdjęcie 2"></a>
-      <a href="assets/gallery3.jpg" data-lightbox="wedding"><img src="assets/gallery3.jpg" alt="Zdjęcie 3"></a>
-      <a href="assets/gallery4.jpg" data-lightbox="wedding"><img src="assets/gallery4.jpg" alt="Zdjęcie 4"></a>
-    </div>
-  </section>
-  <section class="directions">
-    <h2>Jak dojechać?</h2>
-    <div class="directions-links">
-      <a href="https://goo.gl/maps/Kościół" target="_blank">Google Maps — Kościół</a>
-      <a href="https://goo.gl/maps/Sala" target="_blank">Google Maps — Sala weselna</a>
-    </div>
-  </section>
-</main>
+  </div>
+</section>
+<section id="directions" class="directions-section fade-in">
+  <h2>Jak dojechać?</h2>
+  <div id="map"></div>
+</section>
+<section id="timeline" class="timeline-section fade-in">
+  <h2>Harmonogram dnia</h2>
+  <div class="timeline-container">
+    <div class="timeline-item"><div class="time">13:00</div><div class="event">Ceremonia ślubna</div></div>
+    <div class="timeline-item"><div class="time">15:00</div><div class="event">Przyjęcie weselne</div></div>
+    <div class="timeline-item"><div class="time">18:00</div><div class="event">Pierwszy taniec</div></div>
+    <div class="timeline-item"><div class="time">20:00</div><div class="event">Tort weselny</div></div>
+    <div class="timeline-item"><div class="time">00:00</div><div class="event">Zakończenie</div></div>
+  </div>
+</section>
 <footer>Strona przygotowana z miłością przez Paulinę i Dominika ❤️</footer>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/scrollreveal"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
